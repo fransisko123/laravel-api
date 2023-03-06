@@ -1,10 +1,10 @@
 <?php
 
-use App\Models\Employee;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Models\Employee;
 use App\Http\Controllers\AuthController;
-use App\Http\Resources\EmployeeResource;
+use App\Http\Controllers\Api\V1\EmployeeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +23,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/user', [AuthController::class, 'me'])->middleware('auth:sanctum');
 
-Route::get('/employees', function () {
-    return EmployeeResource::collection(Employee::all()->keyBy->id);
-});
+
+Route::get('/employees', [EmployeeController::class, 'index']);
